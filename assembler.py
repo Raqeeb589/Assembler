@@ -66,7 +66,7 @@ def immediate_to_binary(imm,bits):
     
 def assembly_instruction(instruction,program_counter):
     """Converts an assembly instruction into binary machine code."""
-    instruct_ = instruction.replace(","," ").split()
+    instruct_ = instruction.replace(","," ").lower().split()
     
     # Handle load/store instructions with memory access
     if "[" in instruct_[-1] or "]" in instruct_[-1]:
