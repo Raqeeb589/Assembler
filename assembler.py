@@ -207,7 +207,13 @@ if st.button("Convert to Machine Code"):
     
     # Second pass: Convert instructions to machine code
     for line in instruction_lines:
-        machine_code = formatted_instruction(line.strip(),program_counter)
+        line = line.strip()
+    
+    # Ignore full-line comments
+        if line.startswith("//") or line == "":
+            continue
+        clean_line = line.split("//")[0].strip()
+        machine_code = formatted_instruction(clean_line,program_counter)
         binary_output.append(machine_code)
         program_counter += 4
         if machine_code == 'invalid_code':
