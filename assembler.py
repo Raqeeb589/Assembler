@@ -57,7 +57,14 @@ def registers(register):
     
 def immediate_to_binary(imm,bits):
     """Converts an immediate value to a binary string with the specified bit width."""
-    imm = int(imm)
+   
+    if imm.startswith("0x") or imm.startswith("0X"):
+        imm = int(imm, 16)
+    elif imm.startswith("0b") or imm.startswith("0B"):
+        imm = int(imm, 2)
+    else:
+        imm = int(imm)
+    
     if imm > 0 :
         imm_bin = bin(imm)[2:].zfill(bits)
     else :
